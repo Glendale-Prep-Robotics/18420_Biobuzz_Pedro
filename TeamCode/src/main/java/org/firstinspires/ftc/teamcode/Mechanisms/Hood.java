@@ -6,8 +6,8 @@ import dev.nextftc.hardware.actuators.NextServo;
 import dev.nextftc.robot.Mechanism;
 
 public class Hood implements Mechanism {
-    NextServo hoodServo1 = new NextServo(RobotController.controlHub(), 1, 0.01, NextMotor.Direction.FORWARD);
-    NextServo hoodServo2 = new NextServo(RobotController.controlHub(), 3, 0.01, NextMotor.Direction.REVERSE);
+    NextServo hoodServo1 = new NextServo("hs1", 0.01, NextMotor.Direction.FORWARD);
+    NextServo hoodServo2 = new NextServo("hs2", 0.01, NextMotor.Direction.REVERSE);
 
     public static double openHoodPosition = 0.2;
     public static double closeHoodPosition = 0;

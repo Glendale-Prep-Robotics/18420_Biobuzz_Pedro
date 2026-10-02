@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.Mechanisms;
 
-import com.pedropathing.localization.Pose;
+import com.pedropathing.math.Pose;
 
 import dev.nextftc.hardware.RobotController;
 import dev.nextftc.hardware.actuators.NextMotor;
@@ -21,8 +21,8 @@ public class Turret implements Mechanism {
     public final Pose blueRefereeGoal = new Pose(85,75);
     public final Pose blueAudienceGoal = new Pose(85,60);
 
-    NextServo turretServo1 = new NextServo(RobotController.controlHub(), 3, 0.01, NextMotor.Direction.REVERSE);
-    NextServo turretServo2 = new NextServo(RobotController.controlHub(),1, 0.01, NextMotor.Direction.FORWARD);
+    NextServo turretServo1 = new NextServo("ts1", 0.01, NextMotor.Direction.REVERSE);
+    NextServo turretServo2 = new NextServo("ts2", 0.01, NextMotor.Direction.FORWARD);
 
     @Override
     public void periodic(){
@@ -42,9 +42,9 @@ public class Turret implements Mechanism {
     }
 
     public void getTurretAngle(Pose robotPose, boolean redAllience){
-        double robotX = robotPose.getX();
-        double robotY = robotPose.getY();
-        double robotHeading = robotPose.getHeading();
+        double robotX = robotPose.x();
+        double robotY = robotPose.y();
+        double robotHeading = robotPose.heading();
         Pose goalPose;
         if(redAllience){
             if(robotY > 70){
@@ -62,8 +62,8 @@ public class Turret implements Mechanism {
                 goalPose = blueAudienceGoal;
             }
         }
-        double goalX = goalPose.getX();
-        double goalY = goalPose.getY();
+        double goalX = goalPose.x();
+        double goalY = goalPose.y();
 
         double xVal = goalX - robotX;
         double yVal = goalY - robotY;

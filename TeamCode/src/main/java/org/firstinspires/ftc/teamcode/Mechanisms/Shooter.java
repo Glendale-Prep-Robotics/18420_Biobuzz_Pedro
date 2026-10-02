@@ -14,8 +14,8 @@ public class Shooter implements Mechanism {
     //F then P then D.
 
 
-    NextMotor shooterMotor2 = new NextMotor(RobotController.controlHub(), 1);
-    NextMotor shooterMotor1 = new NextMotor(RobotController.controlHub(),1);
+    NextMotor shooterMotor2 = new NextMotor("sm2");
+    NextMotor shooterMotor1 = new NextMotor("sm1");
     /// fix port and Positions
 
     public enum ShooterMode{
