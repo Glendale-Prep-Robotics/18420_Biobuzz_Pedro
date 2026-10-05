@@ -1,5 +1,10 @@
 package org.firstinspires.ftc.teamcode.Mechanisms;
 
+import static org.firstinspires.ftc.teamcode.Mechanisms.GoalPose.blueAudienceGoal;
+import static org.firstinspires.ftc.teamcode.Mechanisms.GoalPose.blueRefereeGoal;
+import static org.firstinspires.ftc.teamcode.Mechanisms.GoalPose.redAudienceGoal;
+import static org.firstinspires.ftc.teamcode.Mechanisms.GoalPose.redRefereeGoal;
+
 import com.pedropathing.math.Pose;
 
 import dev.nextftc.hardware.RobotController;
@@ -16,13 +21,9 @@ public class Turret implements Mechanism {
     public static double noAngle = 0;
     public static double trackingAngle;
 
-    public final Pose redAudienceGoal = new Pose(58,60);
-    public final Pose redRefereeGoal = new Pose(58,75);
-    public final Pose blueRefereeGoal = new Pose(85,75);
-    public final Pose blueAudienceGoal = new Pose(85,60);
 
-    NextServo turretServo1 = new NextServo("ts1", 0.01, NextMotor.Direction.REVERSE);
-    NextServo turretServo2 = new NextServo("ts2", 0.01, NextMotor.Direction.FORWARD);
+    NextServo turretServo1 = new NextServo("ts1");
+    NextServo turretServo2 = new NextServo("ts2");
 
     @Override
     public void periodic(){

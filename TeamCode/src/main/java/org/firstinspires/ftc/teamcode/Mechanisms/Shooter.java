@@ -1,6 +1,12 @@
 package org.firstinspires.ftc.teamcode.Mechanisms;
 
+import static org.firstinspires.ftc.teamcode.Mechanisms.GoalPose.blueAudienceGoal;
+import static org.firstinspires.ftc.teamcode.Mechanisms.GoalPose.blueRefereeGoal;
+import static org.firstinspires.ftc.teamcode.Mechanisms.GoalPose.redAudienceGoal;
+import static org.firstinspires.ftc.teamcode.Mechanisms.GoalPose.redRefereeGoal;
 import static dev.nextftc.units.Units.DegreesPerSecond;
+
+import com.pedropathing.math.Pose;
 
 import dev.nextftc.hardware.RobotController;
 import dev.nextftc.hardware.actuators.NextMotor;
@@ -24,6 +30,8 @@ public class Shooter implements Mechanism {
 
     public static ShooterMode mode =ShooterMode.OFF;
 
+    public static double val;
+
     @Override
     public void periodic(){
 
@@ -33,18 +41,54 @@ public class Shooter implements Mechanism {
 
         switch (mode){
             case OFF:
-                shooterMotor1.setVelocitySetpoint(DegreesPerSecond.of(0));
+                val = 0;
                 break;
 
             case ON:
-                shooterMotor1.getVelocityConstants()
-                        .withP(KP)
-                        .withI(KI)
-                        .withD(KD);
-                shooterMotor1.setVelocitySetpoint(DegreesPerSecond.of(motorVelo));
+                val = motorVelo;
                 break;
         }
 
+        shooterMotor1.getVelocityConstants()
+                .withP(KP)
+                .withI(KI)
+                .withD(KD);
+        shooterMotor1.setVelocitySetpoint(DegreesPerSecond.of(motorVelo));
+
+    }
+
+    public void refreshShooterVelo(Pose robotPose, boolean redAllience){
+        double robotX = robotPose.x();
+        double robotY = robotPose.y();
+        double robotHeading = robotPose.heading();
+        Pose goalPose;
+        if(redAllience){
+            if(robotY > 70){
+                goalPose = redRefereeGoal;
+            }
+            else{
+                goalPose = redAudienceGoal;
+            }
+        }
+        else{
+            if(robotY > 70){
+                goalPose = blueRefereeGoal;
+            }
+            else{
+                goalPose = blueAudienceGoal;
+            }
+        }
+        double goalX = goalPose.x();
+        double goalY = goalPose.y();
+
+        double xVal = goalX - robotX;
+        double yVal = goalY - robotY;
+
+        double distance = Math.sqrt((xVal*xVal)+(yVal*yVal));
+
+        double velo = distance;//write function here
+
+        motorVelo = velo;
     }
 
 

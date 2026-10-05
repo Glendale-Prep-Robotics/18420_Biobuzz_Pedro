@@ -6,28 +6,38 @@ import dev.nextftc.hardware.actuators.NextServo;
 import dev.nextftc.robot.Mechanism;
 
 public class Hood implements Mechanism {
-    NextServo hoodServo1 = new NextServo("hs1", 0.01, NextMotor.Direction.FORWARD);
-    NextServo hoodServo2 = new NextServo("hs2", 0.01, NextMotor.Direction.REVERSE);
+    NextServo hoodServo1 = new NextServo("hs1");
+    NextServo hoodServo2 = new NextServo("hs2");
 
     public static double openHoodPosition = 0.2;
     public static double closeHoodPosition = 0;
     public enum HoodState {
-        SHOOT, CLOSE
+        SHOOT, CLOSE, INIT
     }
-    public static HoodState mode = HoodState.CLOSE;
+    public static HoodState mode = HoodState.INIT;
+
+    public static double val;
     @Override
     public void periodic(){
         switch (mode){
             case SHOOT:
-                hoodServo1.setPosition(openHoodPosition);
-                hoodServo2.setPosition(openHoodPosition);
+                val = openHoodPosition;
                 break;
 
             case CLOSE:
-                hoodServo1.setPosition(closeHoodPosition);
-                hoodServo1.setPosition(closeHoodPosition);
+                val = closeHoodPosition;
+                break;
+
+            case INIT:
                 break;
         }
+
+        hoodServo1.setDirection(NextMotor.Direction.FORWARD);//test
+        hoodServo2.setDirection(NextMotor.Direction.REVERSE);//test
+
+
+        hoodServo1.setPosition(val);
+        hoodServo2.setPosition(val);
 
 
     }
