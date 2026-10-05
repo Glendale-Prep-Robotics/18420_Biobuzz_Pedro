@@ -15,19 +15,12 @@ public class Intake implements Mechanism {
 
     public static double val;
 
-    public static double val2;
-
     public enum IntakeMode{
         ON, OFF, INIT
     }
 
-    public enum Intake2Mode{
-        ON,OFF,INIT
-    }
-
     public static IntakeMode mode = IntakeMode.INIT;
 
-    public static Intake2Mode mode2 = Intake2Mode.INIT;
 
     @Override
     public void periodic(){
@@ -43,6 +36,8 @@ public class Intake implements Mechanism {
             case INIT:
                 break;
         }
+
+        intakeMotor1.setDirection(NextMotor.Direction.REVERSE);
 
         intakeMotor1.setThrottle(val);
 

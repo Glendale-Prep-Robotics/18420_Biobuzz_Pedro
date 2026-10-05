@@ -45,27 +45,15 @@ public class DriverControl extends NextOpMode {
 //                      -gamepad1.left_stick_x,
 //                      -gamepad1.right_stick_x
 //          );//maybe this works?
-        if(gamepad1.leftBumperWasPressed()){
-            intakeOn = !intakeOn;
-        }
+       if(gamepad1.right_bumper){
+           Intake.mode = Intake.IntakeMode.ON;
+           Feeder.mode = Feeder.FeederMode.ON;
+       }
 
-        if(gamepad1.rightBumperWasPressed()){
-            FeederOn = !FeederOn;
-        }
-
-        if(intakeOn){
-            Intake.mode = Intake.IntakeMode.ON;
-        }
-        else {
-            Intake.mode = Intake.IntakeMode.OFF;
-        }
-
-        if(FeederOn){
-            Feeder.mode = Feeder.FeederMode.ON;
-        }
-        else {
-            Feeder.mode = Feeder.FeederMode.OFF;
-        }
+       else{
+           Intake.mode = Intake.IntakeMode.OFF;
+           Feeder.mode = Feeder.FeederMode.OFF;
+       }
 
 
     }
