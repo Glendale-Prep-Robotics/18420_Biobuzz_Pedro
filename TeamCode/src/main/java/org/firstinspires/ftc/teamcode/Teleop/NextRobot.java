@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Teleop;
 ;
 
 import org.firstinspires.ftc.teamcode.Mechanisms.BallBlock;
+import org.firstinspires.ftc.teamcode.Mechanisms.Feeder;
 import org.firstinspires.ftc.teamcode.Mechanisms.Hood;
 import org.firstinspires.ftc.teamcode.Mechanisms.Intake;
 import org.firstinspires.ftc.teamcode.Mechanisms.Shooter;
@@ -16,13 +17,15 @@ public class NextRobot implements dev.nextftc.robot.NextRobot {
 //    Turret turret = new Turret();
 //
       Intake intake = new Intake();
-//
+
+      Feeder feeder = new Feeder();
+
 //    Hood hood = new Hood();
 
     //BallBlock ballBlock = new BallBlock();
 
     @Override
     public Set<Mechanism> getMechanisms() {
-        return Set.of(intake);
+        return Set.of(intake, feeder);
     }
 }
