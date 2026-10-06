@@ -1,7 +1,9 @@
 package org.firstinspires.ftc.teamcode.Mechanisms;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.pedropathing.math.Pose;
 
+@Config
 public class GoalPose {
 
     public static Pose redAudienceGoal = new Pose(58,60);

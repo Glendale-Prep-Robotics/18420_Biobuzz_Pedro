@@ -5,12 +5,15 @@ import static org.firstinspires.ftc.teamcode.Mechanisms.GoalPose.blueRefereeGoal
 import static org.firstinspires.ftc.teamcode.Mechanisms.GoalPose.redAudienceGoal;
 import static org.firstinspires.ftc.teamcode.Mechanisms.GoalPose.redRefereeGoal;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.pedropathing.math.Pose;
 
 import dev.nextftc.hardware.RobotController;
 import dev.nextftc.hardware.actuators.NextMotor;
 import dev.nextftc.hardware.actuators.NextServo;
 import dev.nextftc.robot.Mechanism;
+
+@Config
 public class Turret implements Mechanism {
     public enum TurretTracking{
         ON, OFF
@@ -18,8 +21,10 @@ public class Turret implements Mechanism {
     public static TurretTracking mode = TurretTracking.OFF;
 
     public static double turretAngle;
-    public static double noAngle = 0;
+    public static double noAngle = 0.5;
     public static double trackingAngle;
+
+    public static double DEGREES_PER_TICK = 0.00281;
 
 
     NextServo turretServo1 = new NextServo("ts1");
@@ -29,7 +34,7 @@ public class Turret implements Mechanism {
     public void periodic(){
         switch (mode){
             case ON:
-                turretAngle = trackingAngle;
+                turretAngle = 1;
                 break;
 
             case OFF:
@@ -73,6 +78,8 @@ public class Turret implements Mechanism {
         double angle = Math.atan2(yVal,xVal);
 
         double trueAngle = robotHeading + angle;
+
+        trackingAngle = (trueAngle*DEGREES_PER_TICK) +0.5;
 
 
 

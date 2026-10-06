@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Mechanisms;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.pedropathing.ivy.Command;
 
 import dev.nextftc.hardware.RobotController;
@@ -7,6 +8,7 @@ import dev.nextftc.hardware.actuators.NextMotor;
 import dev.nextftc.hardware.actuators.NextServo;
 import dev.nextftc.robot.Mechanism;
 
+@Config
 public class BallBlock implements Mechanism {
     NextServo ballStop = new NextServo("bs");
 

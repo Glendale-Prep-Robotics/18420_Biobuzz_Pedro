@@ -6,12 +6,14 @@ import static org.firstinspires.ftc.teamcode.Mechanisms.GoalPose.redAudienceGoal
 import static org.firstinspires.ftc.teamcode.Mechanisms.GoalPose.redRefereeGoal;
 import static dev.nextftc.units.Units.DegreesPerSecond;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.pedropathing.math.Pose;
 
 import dev.nextftc.hardware.RobotController;
 import dev.nextftc.hardware.actuators.NextMotor;
 import dev.nextftc.robot.Mechanism;
 
+@Config
 public class Shooter implements Mechanism {
     public double motorVelo = 30;
     public double KP = 0;

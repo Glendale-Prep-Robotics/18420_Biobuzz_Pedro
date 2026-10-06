@@ -1,10 +1,13 @@
 package org.firstinspires.ftc.teamcode.Mechanisms;
 
+import com.acmerobotics.dashboard.config.Config;
+
 import dev.nextftc.hardware.RobotController;
 import dev.nextftc.hardware.actuators.NextMotor;
 import dev.nextftc.hardware.actuators.NextServo;
 import dev.nextftc.robot.Mechanism;
 
+@Config
 public class Hood implements Mechanism {
     NextServo hoodServo1 = new NextServo("hs1");
     NextServo hoodServo2 = new NextServo("hs2");
