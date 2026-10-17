@@ -8,6 +8,7 @@ import com.pedropathing.math.Pose;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Mechanisms.Arm;
+import org.firstinspires.ftc.teamcode.Mechanisms.BallBlock;
 import org.firstinspires.ftc.teamcode.Mechanisms.Feeder;
 import org.firstinspires.ftc.teamcode.Mechanisms.Intake;
 import org.firstinspires.ftc.teamcode.Mechanisms.Turret;
@@ -33,6 +34,10 @@ public class DriverControl extends NextOpMode {
     CommandGamepad gp2 = new CommandGamepad(gamepad2);
 
     public boolean armDown = false;
+
+    public boolean turretTrack = false;
+
+    public boolean ballGo = false;
 
 
     @Override
@@ -68,9 +73,33 @@ public class DriverControl extends NextOpMode {
            Feeder.mode = Feeder.FeederMode.OFF;
        }
 
+       if(gamepad1.bWasPressed()){
+           turretTrack =! turretTrack;
+       }
+
+       if(turretTrack){
+           Turret.mode = Turret.TurretTracking.ON;
+       }
+       else{
+           Turret.mode = Turret.TurretTracking.OFF;
+       }
+
+       if(gamepad1.yWasPressed()){
+           ballGo =! ballGo;
+       }
+       if(ballGo){
+           BallBlock.mode = BallBlock.BlockState.BALL_GO;
+       }
+       else{
+           BallBlock.mode = BallBlock.BlockState.BALL_NO;
+       }
+
 
        Telemetry.log("arm toggle", armDown);
        Telemetry.log("arm State", Arm.mode);
+       Telemetry.log("Arm Position", Arm.val);
+       Telemetry.log("TurretState", Turret.mode);
+       Telemetry.log("ball State", BallBlock.mode);
        Telemetry.update();
 
 

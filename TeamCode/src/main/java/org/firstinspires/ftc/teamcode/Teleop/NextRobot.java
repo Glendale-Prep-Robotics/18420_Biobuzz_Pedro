@@ -15,16 +15,16 @@ import java.util.Set;
 import dev.nextftc.robot.Mechanism;
 
 public class NextRobot implements dev.nextftc.robot.NextRobot {
-//    Shooter shooter = new Shooter();
-//    Turret turret = new Turret();
-//
+      Shooter shooter = new Shooter();
+      Turret turret = new Turret();
+
       Intake intake = new Intake();
 
       Feeder feeder = new Feeder();
 
-//    Hood hood = new Hood();
+      Hood hood = new Hood();
 
-    //BallBlock ballBlock = new BallBlock();
+    BallBlock ballBlock = new BallBlock();
 
     DriveTrain drive = new DriveTrain();
 
@@ -32,6 +32,6 @@ public class NextRobot implements dev.nextftc.robot.NextRobot {
 
     @Override
     public Set<Mechanism> getMechanisms() {
-        return Set.of(intake, feeder, arm, drive);
+        return Set.of(intake, feeder, arm, drive, shooter, turret, hood, ballBlock);
     }
 }

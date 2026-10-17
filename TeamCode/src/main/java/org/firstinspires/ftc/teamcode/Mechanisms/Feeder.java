@@ -37,7 +37,7 @@ public class Feeder implements Mechanism {
         }
 
 
-        FeederMotor.setDirection(NextMotor.Direction.FORWARD);
+        FeederMotor.setDirection(NextMotor.Direction.REVERSE);
         FeederMotor.setThrottle(val2);
     }
 }

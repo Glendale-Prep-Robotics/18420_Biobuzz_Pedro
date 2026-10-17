@@ -16,9 +16,9 @@ import dev.nextftc.robot.Mechanism;
 @Config
 public class Turret implements Mechanism {
     public enum TurretTracking{
-        ON, OFF
+        ON, OFF, INIT
     }
-    public static TurretTracking mode = TurretTracking.OFF;
+    public static TurretTracking mode = TurretTracking.INIT;
 
     public static double turretAngle;
     public static double noAngle = 0.5;
@@ -41,7 +41,12 @@ public class Turret implements Mechanism {
                 turretAngle = noAngle;
                 break;
 
+            case INIT:
+                break;
         }
+
+        turretServo1.setDirection(NextMotor.Direction.FORWARD);
+        turretServo2.setDirection(NextMotor.Direction.FORWARD);
 
         turretServo1.setPosition(turretAngle);
         turretServo2.setPosition(turretAngle);

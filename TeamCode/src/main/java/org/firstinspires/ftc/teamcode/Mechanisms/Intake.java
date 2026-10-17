@@ -40,7 +40,7 @@ public class Intake implements Mechanism {
                 break;
         }
 
-        intakeMotor1.setDirection(NextMotor.Direction.REVERSE);
+        intakeMotor1.setDirection(NextMotor.Direction.FORWARD);
 
         intakeMotor1.setThrottle(val);
 

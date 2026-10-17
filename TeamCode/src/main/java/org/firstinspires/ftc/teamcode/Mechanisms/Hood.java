@@ -10,7 +10,7 @@ import dev.nextftc.robot.Mechanism;
 @Config
 public class Hood implements Mechanism {
     NextServo hoodServo1 = new NextServo("hs1");
-    NextServo hoodServo2 = new NextServo("hs2");
+    //NextServo hoodServo2 = new NextServo("hs2");
 
     public static double openHoodPosition = 0.2;
     public static double closeHoodPosition = 0;
@@ -36,11 +36,11 @@ public class Hood implements Mechanism {
         }
 
         hoodServo1.setDirection(NextMotor.Direction.FORWARD);//test
-        hoodServo2.setDirection(NextMotor.Direction.REVERSE);//test
+        //hoodServo2.setDirection(NextMotor.Direction.REVERSE);//test
 
 
         hoodServo1.setPosition(val);
-        hoodServo2.setPosition(val);
+        //hoodServo2.setPosition(val);
 
 
     }
