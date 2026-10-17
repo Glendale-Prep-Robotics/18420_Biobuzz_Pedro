@@ -37,7 +37,8 @@ public class Shooter implements Mechanism {
     @Override
     public void periodic(){
 
-        shooterMotor2.follow(shooterMotor1);
+        shooterMotor2.follow(shooterMotor1, NextMotor.Direction.FORWARD);
+        shooterMotor1.setDirection(NextMotor.Direction.REVERSE);
         shooterMotor2.setZeroPowerBehavior(NextMotor.ZeroPowerBehavior.FLOAT);
         shooterMotor1.setZeroPowerBehavior(NextMotor.ZeroPowerBehavior.FLOAT);
 
@@ -47,16 +48,10 @@ public class Shooter implements Mechanism {
                 break;
 
             case ON:
-                val = motorVelo;
+                val = 0.5;
                 break;
         }
-
-        shooterMotor1.getVelocityConstants()
-                .withP(KP)
-                .withI(KI)
-                .withD(KD);
-        shooterMotor1.setVelocitySetpoint(DegreesPerSecond.of(motorVelo));
-
+        shooterMotor1.setThrottle(val);
     }
 
     public void refreshShooterVelo(Pose robotPose, boolean redAllience){

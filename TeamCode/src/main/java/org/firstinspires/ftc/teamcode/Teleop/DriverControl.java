@@ -11,7 +11,9 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.teamcode.Mechanisms.Arm;
 import org.firstinspires.ftc.teamcode.Mechanisms.BallBlock;
 import org.firstinspires.ftc.teamcode.Mechanisms.Feeder;
+import org.firstinspires.ftc.teamcode.Mechanisms.Hood;
 import org.firstinspires.ftc.teamcode.Mechanisms.Intake;
+import org.firstinspires.ftc.teamcode.Mechanisms.Shooter;
 import org.firstinspires.ftc.teamcode.Mechanisms.Turret;
 import org.firstinspires.ftc.teamcode.pedro.Constants;
 
@@ -40,6 +42,8 @@ public class DriverControl extends NextOpMode {
     public boolean turretTrack = false;
 
     public boolean ballGo = false;
+
+    public boolean hoodOpen = false;
 
 
     @Override
@@ -96,12 +100,30 @@ public class DriverControl extends NextOpMode {
            BallBlock.mode = BallBlock.BlockState.BALL_NO;
        }
 
+       if(gamepad1.xWasPressed()){
+           hoodOpen =!hoodOpen;
+       }
+
+       if(hoodOpen){
+           Hood.mode = Hood.HoodState.SHOOT;
+       }
+       else{
+           Hood.mode = Hood.HoodState.CLOSE;
+       }
+
+       if(gamepad1.left_trigger > 0.5){
+           Shooter.mode = Shooter.ShooterMode.ON;
+       }
+       else{
+           Shooter.mode = Shooter.ShooterMode.OFF;
+       }
 
        Telemetry.log("arm toggle", armDown);
        Telemetry.log("arm State", Arm.mode);
        Telemetry.log("Arm Position", Arm.servoPosition);
        Telemetry.log("TurretState", Turret.mode);
        Telemetry.log("ball State", BallBlock.mode);
+       Telemetry.log("Hood state", Hood.mode);
 
        Telemetry.update();
 
