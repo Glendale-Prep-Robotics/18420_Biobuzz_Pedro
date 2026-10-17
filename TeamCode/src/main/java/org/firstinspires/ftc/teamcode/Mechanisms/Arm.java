@@ -9,7 +9,9 @@ import com.bylazar.configurables.annotations.Configurable;
 import dev.nextftc.hardware.actuators.NextMotor;
 import dev.nextftc.hardware.actuators.NextServo;
 import dev.nextftc.robot.Mechanism;
+import dev.nextftc.robot.Telemetry;
 
+@Config
 @Configurable
 public class Arm implements Mechanism {
 
@@ -21,11 +23,11 @@ public class Arm implements Mechanism {
         DOWN,UP,INIT
     }
 
-    public static double val;
+    double val; //this should be local
 
     public static FlowerPiviotState mode = FlowerPiviotState.INIT;
 
-    public static double testVariable = 0.25;
+    public static double servoPosition;
     @Override
     public void periodic(){
 
@@ -42,9 +44,14 @@ public class Arm implements Mechanism {
                 val = 0;
                 break;
         }
+        Telemetry.log("Down Position",DOWN_POSITION);
+        Telemetry.log("val", val);
+
 
         flowerArm.setDirection(NextMotor.Direction.REVERSE);
         flowerArm.setPosition(val);
+
+        servoPosition = flowerArm.getPosition();
 
     }
 }

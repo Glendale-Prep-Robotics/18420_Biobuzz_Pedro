@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Teleop;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
+import com.bylazar.configurables.annotations.Configurable;
 import com.pedropathing.follower.Follower;
 import com.pedropathing.math.Pose;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -21,6 +22,7 @@ import dev.nextftc.robot.opmode.NextTeleop;
 import dev.nextftc.robot.triggers.CommandGamepad;
 
 @Config
+@Configurable
 @NextTeleop(name = "DriverControl")
 public class DriverControl extends NextOpMode {
     private final NextRobot robot;
@@ -97,9 +99,10 @@ public class DriverControl extends NextOpMode {
 
        Telemetry.log("arm toggle", armDown);
        Telemetry.log("arm State", Arm.mode);
-       Telemetry.log("Arm Position", Arm.val);
+       Telemetry.log("Arm Position", Arm.servoPosition);
        Telemetry.log("TurretState", Turret.mode);
        Telemetry.log("ball State", BallBlock.mode);
+
        Telemetry.update();
 
 

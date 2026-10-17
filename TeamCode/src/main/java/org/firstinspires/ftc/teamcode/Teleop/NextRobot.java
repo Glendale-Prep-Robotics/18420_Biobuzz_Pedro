@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode.Teleop;
 ;
 
+import com.bylazar.configurables.annotations.Configurable;
+
 import org.firstinspires.ftc.teamcode.Mechanisms.Arm;
 import org.firstinspires.ftc.teamcode.Mechanisms.BallBlock;
 import org.firstinspires.ftc.teamcode.Mechanisms.DriveTrain;
@@ -14,6 +16,7 @@ import java.util.Set;
 
 import dev.nextftc.robot.Mechanism;
 
+@Configurable
 public class NextRobot implements dev.nextftc.robot.NextRobot {
       Shooter shooter = new Shooter();
       Turret turret = new Turret();
